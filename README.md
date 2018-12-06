@@ -7,9 +7,9 @@ GreenVise project TLE 1
 - [x] Github opzetten
 
     4 december
-- [ ] ERD maken
-- [ ] Database aanmaken
-- [ ] Kolommen aanmaken
+- [x] ERD maken
+- [x] Database aanmaken
+- [x] Kolommen aanmaken
 - [ ] Databse koppelen
 
     6 december
