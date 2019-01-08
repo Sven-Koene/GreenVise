@@ -55,9 +55,21 @@ h2{
 	margin:10px;
 }
 
-.question-btns > div > button > i{
-	color:white !important;
-	font-size:70pt;
+.question-btns > div > button > img{
+	position: relative;
+	width:100px;
+	height:100px;
+}
+
+.question-btns > div > button > span{
+	color:white;
+	font-weight: bold;
+	padding-top:10px;
+	font-size:10px;
+}
+
+.vraag-2 > span{
+	font-size:12pt !important;
 }
 
 #footer{
