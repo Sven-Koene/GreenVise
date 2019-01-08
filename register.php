@@ -1,25 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Registreer je voor onze dienst - GreenVise</title>
-</head>
-<body>
+<?php
+require_once("includes/header.php");
+?>
+
+<div class="container">
 	<form method="post">
-		<input type="text" name="naam" placeholder="Vul hier uw naam in">
-		<input type="text" name="postcode" placeholder="Vul hier uw postcode in">
-		<input type="number" name="huisnummer" placeholder="Vul hier uw huisnummer in">
-		<input type="text" name="huisnummertoevoeging" placeholder="Vul hier uw toevoeging in">
-		<input type="text" name="plaatsnaam" placeholder="Vul hier uw plaatsnaam in">
-		<input type="email" name="email" placeholder="Vul hier uw emailadres in">
-		<input type="password" name="password" placeholder="Vul hier uw wachtwoord in">
-		<input type="password" name="secondpassword" placeholder="Vul hier nogmaals uw wachtwoord in">
-		<input type="submit" value="Registreer" name="submit">
+	  <div class="form-group">
+	    <label for="name">Naam: *</label>
+	    <input type="text" name="naam" placeholder="Vul hier uw naam in" id="name"  class="form-control">
+	  </div>
+	  <div class="form-group">
+	    <label for="postcode">Postcode: *</label>
+	    <input type="text" name="postcode" placeholder="Vul hier uw postcode in"  id="postcode"  class="form-control">
+	  </div>
+	  <div class="form-group">
+	    <label for="nummer">Huisnummer: *</label>
+	    <input type="number" name="huisnummer" placeholder="Vul hier uw huisnummer in"   id="nummer"  class="form-control">
+	  </div>
+	  <div class="form-group">
+	    <label for="toevoeging">Toevoeging:</label>
+	    <input type="text" name="huisnummertoevoeging" placeholder="Vul hier uw toevoeging in" id="toevoeging"  class="form-control">
+	  </div>
+	  <div class="form-group">
+	    <label for="plaatsnaam">Plaatsnaam: *</label>
+	    <input type="text" name="plaatsnaam" placeholder="Vul hier uw plaatsnaam in" id="plaatsnaam"  class="form-control">
+	  </div>
+	  <div class="form-group">
+	    <label for="email">Email: *</label>
+	    <input type="email" name="email" placeholder="Vul hier uw emailadres in" id="email"  class="form-control">
+	  </div>
+	  <div class="form-group">
+	    <label for="wachtwoord1">Wachtwoord: *</label>
+	    <input type="password" name="password" placeholder="Vul hier uw wachtwoord in" id="wachtwoord1"  class="form-control">
+	  </div>
+	  <div class="form-group">
+	    <label for="wachtwoord2">Herhaal het wachtwoord: *</label>
+	    <input type="password" name="secondpassword" placeholder="Vul hier nogmaals uw wachtwoord in" id="wachtwoord2"  class="form-control">
+	  </div>
+	  <input type="submit" value="Registreer" name="submit">
 	</form>
+</div>
+
 
 </body>
 </html>
 <?php
 if(isset($_POST['submit'])){
+	require_once('DBConnection.php');
+	$save = true;
+	$error = [];
 	// Beveilig tegen XSS
 	$naam = htmlentities($_POST['naam']);
 	$postcode = htmlentities($_POST['postcode']);
@@ -40,42 +68,74 @@ if(isset($_POST['submit'])){
 	$wachtwoord1 = mysqli_real_escape_string($db,$wachtwoord1);
 	$wachtwoord2 = mysqli_real_escape_string($db,$wachtwoord2);
 
-	if($wachtwoord1 === $wachtwoord2){
-		$error = push("Je wachtwoorden komen niet overeen!");
+	if(!($wachtwoord1 === $wachtwoord2)){
+		array_push($error, "Je wachtwoorden komen niet overeen!");
+		$save = false;
 	}
 
 	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  		$error = push("Je email heeft niet het formaat van example@example.nl"); 
+  		array_push($error, "Je email heeft niet het formaat van example@example.nl"); 
+  		$save = false;
 	}
 
 	if(empty($naam)){
-		$error = push("Je naam is een verplicht veld"); 
+		array_push($error, "Je naam is een verplicht veld"); 
+		$save = false;
 	}
 
 	if(empty($postcode)){
-		$error = push("Je postcode is een verplicht veld"); 
+		array_push($error, "Je postcode is een verplicht veld"); 
+		$save = false;
 	}
 
 	if(empty($huisnummer)){
-		$error = push("Je huisnummer is een verplicht veld"); 
+		array_push($error, "Je huisnummer is een verplicht veld");
+		$save = false; 
 	}
 
 	if(empty($plaatsnaam)){
-		$error = push("Je plaatsnaam is een verplicht veld"); 
+		array_push($error, "Je plaatsnaam is een verplicht veld");
+		$save = false; 
 	}
 
 	if(strlen($postcode)<=5){
-		$error = push("Je postcode is te kort");
+		array_push($error, "Je postcode is te kort");
+		$save = false;
 	}
 
 	if(strlen($postcode)>=8){
-		$error = push("Je postcode is te lang");
+		array_push($error, "Je postcode is te lang");
+		$save = false;
 	}
 
-	if(strlen($password1)<=6){
-		$error = push("Je wachtwoord is te kort. Je moet minimaal 7 tekens gebruiken");
+	if(strlen($wachtwoord1)<=6){
+		array_push($error, "Je wachtwoord is te kort. Je moet minimaal 7 tekens gebruiken");
+		$save = false;
 	}
 
-	$query = INSERT INTO `login` ( `Name`, `Password`, `Organisation`, `Street`, `Postcode`, `Place`, `Country`, `Email`, `Phone`, `Rank`) VALUES ('$name', '$PasswordAdd', '$OrganisationAdd', '$StreetAdd', '$PostcodeAdd', '$PlaceAdd', '$CountryAdd', '$EmailAdd', '$PhoneNumberAdd', '$RankAdd')
+	
+	if($save == true){
+		$query = "INSERT INTO `users` (`usersId`, `email`, `wachtwoord`, `postcode`, `huisnummer`, `toevoeging_huisnummer`, `plaatsnaam`, `naam`) VALUES (NULL, '$email', '$wachtwoord1', '$postcode', '$huisnummer', '$toevoeging', '$plaatsnaam', '$naam')";
+		mysqli_query($db, $query);
+	}
+
+	if($save == false){
+		foreach($error as $fault){
+			?>
+				<div class="alert alert-danger" role="alert">
+				 <?=$fault;?>
+				</div>
+			<?php
+		}
+	}
+
+	if($save == true){
+		?>
+		<div class="alert alert-success" role="alert">
+  			Je registratie is succesvol voltooid!
+		</div>
+		<?php
+	}
 }
+require_once("includes/footer.php");
 ?>
