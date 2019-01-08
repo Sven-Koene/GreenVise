@@ -1,5 +1,75 @@
-body{
+/*body{
     background-image:url("../images/fontein.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
+}*/
+
+.register_page{
+	background-color:white;
+}
+
+h2{
+	color:#249D12;
+}
+
+.navbar{
+	border-bottom: 2px solid #249D12;
+	margin-bottom:25px;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+	color: #249D12;
+    font-size: 14pt
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{
+	color: #249D12;
+    font-size: 14pt
+    font-weight:bold;
+}
+
+.logo-nav{
+	width:100px;
+	height:100px;
+	margin-right:20px;
+}
+
+.form-group > label{
+	color:#249D12 !important;
+	font-weight: bold;
+}
+
+.questions-btns > div {
+	text-align: center !important;
+}
+.question-btns > div > button{
+	background-color:#249D12;
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:15px;
+	padding-right:15px;
+	width:200px;
+	height: 200px;
+	border:2px solid #249D12;
+	border-radius:2px;
+	margin:10px;
+}
+
+.question-btns > div > button > i{
+	color:white !important;
+	font-size:70pt;
+}
+
+#footer{
+	background-color:#249D12 !important;
+}
+
+#footer > p{
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:15px;
+	margin:0px;
+	color:white;
+	font-weight: bold;
+	margin-top:15px;
 }

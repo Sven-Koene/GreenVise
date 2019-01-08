@@ -1,11 +1,19 @@
 <?php
 require_once("includes/header.php");
 ?>
+<body class="register_page">
+<?php
+	require_once("includes/menu.php");
+?>
 
 <div class="container">
+	<h2>Registratie pagina</h2>
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dui sem, tristique sit amet ex sit amet, suscipit condimentum eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean sit amet laoreet nisl, sit amet cursus eros. Nulla facilisi. Nam varius quam eu dapibus tristique. Nullam sit amet efficitur metus, eget rhoncus urna. Sed aliquet, magna vel vestibulum porttitor, mi erat ultrices metus, sit amet tincidunt libero erat non purus. Nullam eu justo vehicula, pretium justo ut, molestie sem. Nunc iaculis turpis nisi, fermentum finibus purus finibus et. Pellentesque eget dignissim mauris, at scelerisque nunc. Nulla sed posuere sapien. Sed quis facilisis mauris. Pellentesque ipsum libero, imperdiet non nisi ac, scelerisque faucibus nulla. Duis at mi non libero placerat ornare.
+	</p>
 	<form method="post">
 	  <div class="form-group">
-	    <label for="name">Naam: *</label>
+	    <label for="name" class="label-white">Naam: *</label>
 	    <input type="text" name="naam" placeholder="Vul hier uw naam in" id="name"  class="form-control">
 	  </div>
 	  <div class="form-group">
@@ -38,11 +46,6 @@ require_once("includes/header.php");
 	  </div>
 	  <input type="submit" value="Registreer" name="submit">
 	</form>
-</div>
-
-
-</body>
-</html>
 <?php
 if(isset($_POST['submit'])){
 	require_once('DBConnection.php');
@@ -137,5 +140,8 @@ if(isset($_POST['submit'])){
 		<?php
 	}
 }
+?>
+</div>
+<?php
 require_once("includes/footer.php");
 ?>
