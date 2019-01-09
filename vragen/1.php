@@ -25,23 +25,26 @@ require_once("../includes/header-onedeep.php");
 			$_SESSION['spouw'] = 0;
 			$_SESSION['vloer'] = 0;
 
+			$_SESSION['flat'] = false;
+
 
 			if(isset($_POST['flat'])){
-				save(1,-15,-20,0,10);
+				$_SESSION['flat'] = true;
+				save(1,-15,5,10,10);
 				redirect(2);
 			}
 
 			if(isset($_POST['row-home'])){
-				save(1,5,5,10,5);
-				redirect(2);
-			}
-
-			if(isset($_POST['house-2'])){
 				save(1,5,5,10,10);
 				redirect(2);
 			}
 
-			if(isset($_POST['house'])){
+			if(isset($_POST['2-home'])){
+				save(1,5,5,10,10);
+				redirect(2);
+			}
+
+			if(isset($_POST['home'])){
 				save(1,10,10,10,10);
 				redirect(2);
 			}

@@ -85,3 +85,39 @@ h2{
 	font-weight: bold;
 	margin-top:15px;
 }
+
+.home-questions >.full-width-container{
+	height:calc(100vh - 140px);
+	width:100%;
+	background-image: url("../images/green_home_italie.jpg");
+  	background-repeat: no-repeat;
+  	background-position: center center;
+  	background-color:rgba(255,255,255,0.8);
+	margin:0px;
+}
+
+.light-background{
+	background-color:rgba(255,255,255,0.7);
+	padding:20px;
+	border-radius:2px;
+}
+
+
+
+.full-width-container{
+	padding-top:10%;
+}
+
+.btn-primary{
+	background-color:#249D12;
+	border-radius:2px;
+	border:0px solid black;
+	padding-right:35px;
+	padding-left:35px;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+.home-questions > header, .home-questions > #footer > p{
+	margin:0;
+}

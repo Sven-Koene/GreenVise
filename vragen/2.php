@@ -13,38 +13,56 @@ require_once("../includes/header-onedeep.php");
 			<form method="post" class="question-btns">
 				<div style="text-align:center;">
 					<button type="submit" name="1945" value="flat" class="vraag-2"><span>Voor 1945</span></button>
-					<button type="submit" name="1945-1970" value="row-home" class="vraag-2"><span>1945-1970</span></button>
-					<button type="submit" name="1971-1985" value="house-2" class="vraag-2"><span>1971-1985</span></button>
-					<button type="submit" name="1986-2000<" value="house" class="vraag-2"><span>1986-2000</span></button>
-					<button type="submit" name="2001-heden" value="house" class="vraag-2"><span>2001-heden</span></button>
+					<button type="submit" name="1945-1955" value="row-home" class="vraag-2"><span>1945-1955</span></button>
+					<button type="submit" name="1956-1965" value="row-home" class="vraag-2"><span>1956-1965</span></button>
+					<button type="submit" name="1966-1975" value="house-2" class="vraag-2"><span>1966-1975</span></button>
+					<button type="submit" name="1976-1985<" value="house" class="vraag-2"><span>1976-1985</span></button>
+					<button type="submit" name="1986-1995" value="house" class="vraag-2"><span>1986-1995</span></button>
+					<button type="submit" name="1996-2005" value="house" class="vraag-2"><span>1996-2005</span></button>
+					<button type="submit" name="2006-heden" value="house" class="vraag-2"><span>2006-heden</span></button>
 				</div>
 			</form>
 			<?php
 
 
 			if(isset($_POST['1945'])){
-				save(2,0,0,0,5);
-				redirect(2);
+				save(2,0,0,0,10);
+				redirect(3);
 			}
 
-			if(isset($_POST['1945-1970'])){
-				save(2,0,0,0,5);
-				redirect(2);
+			if(isset($_POST['1945-1955'])){
+				save(2,0,0,0,10);
+				redirect(3);
 			}
 
-			if(isset($_POST['1971-1985'])){
-				save(2,0,0,0,5);
-				redirect(2);
+			if(isset($_POST['1956-1965'])){
+				save(2,0,0,0,10);
+				redirect(3);
 			}
 
-			if(isset($_POST['1985-2000'])){
+			if(isset($_POST['1966-1975'])){
+				save(2,0,0,0,10);
+				redirect(3);
+			}
+
+			if(isset($_POST['1976-1985'])){
 				save(0,0,0,0,0);
-				redirect(2);
+				redirect(3);
 			}
 
-			if(isset($_POST['2000-heden'])){
+			if(isset($_POST['1986-1995'])){
 				save(0,0,0,0,0);
-				redirect(2);
+				redirect(3);
+			}
+
+			if(isset($_POST['1996-2005'])){
+				save(0,0,0,0,0);
+				redirect(3);
+			}
+
+			if(isset($_POST['2006-heden'])){
+				save(0,0,0,0,0);
+				redirect(3);
 			}
 
 			print_r($_SESSION);

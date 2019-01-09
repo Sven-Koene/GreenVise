@@ -44,7 +44,7 @@ require_once("includes/header.php");
 	    <label for="wachtwoord2">Herhaal het wachtwoord: *</label>
 	    <input type="password" name="secondpassword" placeholder="Vul hier nogmaals uw wachtwoord in" id="wachtwoord2"  class="form-control">
 	  </div>
-	  <input type="submit" value="Registreer" name="submit">
+	  <input type="submit" value="Registreer" name="submit" class="btn btn-primary">
 	</form>
 <?php
 if(isset($_POST['submit'])){
@@ -118,6 +118,7 @@ if(isset($_POST['submit'])){
 
 	
 	if($save == true){
+		$wachtwoord1 = password_hash($wachtwoord2, PASSWORD_DEFAULT);
 		$query = "INSERT INTO `users` (`usersId`, `email`, `wachtwoord`, `postcode`, `huisnummer`, `toevoeging_huisnummer`, `plaatsnaam`, `naam`) VALUES (NULL, '$email', '$wachtwoord1', '$postcode', '$huisnummer', '$toevoeging', '$plaatsnaam', '$naam')";
 		mysqli_query($db, $query);
 	}
